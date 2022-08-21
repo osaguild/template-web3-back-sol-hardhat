@@ -1,2 +1,2 @@
-# template-web3-sol-hardhat
-template repository for web3 project using solidity and hardhat
+# template-web3-back-sol-hardhat
+template repository for web3 back-end using solidity and hardhat
