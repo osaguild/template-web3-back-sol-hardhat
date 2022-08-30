@@ -16,7 +16,7 @@ async function main() {
   // manager
   const managerFactory = await ethers.getContractFactory('Manager')
   const manager = await managerFactory.deploy(deployer.address)
-  console.log('PatientToken address:', manager.address)
+  console.log('Manager address:', manager.address)
 }
 
 main()

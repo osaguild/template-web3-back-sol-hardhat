@@ -23,20 +23,43 @@ template repository for web3 back-end using solidity and hardhat
 # how to use this template?
 
 - update `xxx` on package.json
-- check your test targets
-  - template has two jest config which are `jest.jsdom.config.js` and `jest.node.config.js`. if you need both config you don't need to fix anything. but you need only one, you should delete another config and fix `test` script command on package.json.
-    - `jest.jsdom.config.js` : for react component
-    - `jest.node.config.js` : for typescript library which run on node module
-- delete sample code on `./src`
-  - `./src/components/Button` : sample react component and test code.
-  - `./src/lib/script` : sample typescript library and test code.
+- delete sample code under `./contracts`, `./test` and `./scripts`
+  - `./contracts` : sample solidity code.
+  - `./test` : sample test code of contract.
+  - `./scripts` : sample deploy script.
+- set environment variables to `.env`. sample env is `.env.sample`.
+  - `ALCHEMY_API_KEY` : for deploy via Alchemy api. please get api key from [here](https://www.alchemy.com/)
+  - `RINKEBY_PRIVATE_KEY` : your private key.
+  - `ETHERSCAN_API_KEY` : your etherscan api key. use it to verify source code on etherscan. please get api key from [here](https://etherscan.io/)
+  - `COIN_MARKET_CAP_API_KEY` : your coin market cap api key. use it to know USD price of eth. please get api key from [here](https://coinmarketcap.com/)
 
-# release to npm
+# how to verify your source code on etherscan?
 
-If you release to npm, you should run below commands
+## case.1: if contract hasn't constructor or has constructor with no arguments.
 
 ```yarn
-yarn rollup
-yarn login
-yarn publish
+yarn verify-rinkeby YOUR_CONTRACT_ADDRESS
+
+/* sample */
+yarn verify-rinkeby 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39
+```
+
+## case.2: if contract has constructor with arguments.
+
+```yarn
+yarn verify-rinkeby YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGUMENTS_1
+yarn verify-rinkeby YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGUMENTS_1 CONSTRUCTOR_ARGUMENTS_2 ...
+
+/* sample */
+yarn verify-rinkeby 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39 "hello"
+yarn verify-rinkeby 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39 "hello" "world" ...
+```
+
+## case.3: if you want to specify contract code. e.g. same structure contract on your repository.
+
+```yarn
+yarn verify-rinkeby --contract YOUR_CONTRACT_CODE_PATH:YOUR_CONTRACT_NAME YOUR_CONTRACT_ADDRESS
+
+/* sample */
+yarn verify-rinkeby --contract contracts/Token.sol:Token 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39
 ```
