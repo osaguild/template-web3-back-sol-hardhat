@@ -29,7 +29,7 @@ template repository for web3 back-end using solidity and hardhat
   - `./scripts` : sample deploy script.
 - set environment variables to `.env`. sample env is `.env.sample`.
   - `ALCHEMY_API_KEY` : for deploy via Alchemy api. please get api key from [here](https://www.alchemy.com/)
-  - `RINKEBY_PRIVATE_KEY` : your private key.
+  - `PRIVATE_KEY` : your private key.
   - `ETHERSCAN_API_KEY` : your etherscan api key. use it to verify source code on etherscan. please get api key from [here](https://etherscan.io/)
   - `COIN_MARKET_CAP_API_KEY` : your coin market cap api key. use it to know USD price of eth. please get api key from [here](https://coinmarketcap.com/)
 
@@ -38,28 +38,28 @@ template repository for web3 back-end using solidity and hardhat
 ## case.1: if contract hasn't constructor or has constructor with no arguments.
 
 ```yarn
-yarn verify-rinkeby YOUR_CONTRACT_ADDRESS
+yarn verify-goerli YOUR_CONTRACT_ADDRESS
 
 /* sample */
-yarn verify-rinkeby 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39
+yarn verify-goerli 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39
 ```
 
 ## case.2: if contract has constructor with arguments.
 
 ```yarn
-yarn verify-rinkeby YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGUMENTS_1
-yarn verify-rinkeby YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGUMENTS_1 CONSTRUCTOR_ARGUMENTS_2 ...
+yarn verify-goerli YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGUMENTS_1
+yarn verify-goerli YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGUMENTS_1 CONSTRUCTOR_ARGUMENTS_2 ...
 
 /* sample */
-yarn verify-rinkeby 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39 "hello"
-yarn verify-rinkeby 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39 "hello" "world" ...
+yarn verify-goerli 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39 "hello"
+yarn verify-goerli 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39 "hello" "world" ...
 ```
 
 ## case.3: if you want to specify contract code. e.g. same structure contract on your repository.
 
 ```yarn
-yarn verify-rinkeby --contract YOUR_CONTRACT_CODE_PATH:YOUR_CONTRACT_NAME YOUR_CONTRACT_ADDRESS
+yarn verify-goerli --contract YOUR_CONTRACT_CODE_PATH:YOUR_CONTRACT_NAME YOUR_CONTRACT_ADDRESS
 
 /* sample */
-yarn verify-rinkeby --contract contracts/Token.sol:Token 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39
+yarn verify-goerli --contract contracts/Token.sol:Token 0x3A345Cef4a5d672BADa38f9f03fc09Eb67e70e39
 ```
