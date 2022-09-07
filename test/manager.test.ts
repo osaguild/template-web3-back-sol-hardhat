@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { Manager } from '../typechain-types'
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 
-describe('MedicalDataManager.sol', () => {
+describe('Manager.sol', () => {
   let owner: SignerWithAddress
   let user: SignerWithAddress
   let contract: Manager
@@ -15,15 +15,15 @@ describe('MedicalDataManager.sol', () => {
     const factory = await ethers.getContractFactory('Manager')
     contract = await factory.deploy(owner.address)
   })
-  it('set message', async () => {
+  it('setMessage', async () => {
     await expect(contract.connect(owner).setMessage('hello world!'))
       .to.emit(contract, 'SetMessage')
       .withArgs(owner.address, 'hello world!')
   })
-  it('revert set message', async () => {
+  it('setMessage is reverted', async () => {
     await expect(contract.connect(user).setMessage('hello world!')).to.be.revertedWith('Only owner can call')
   })
-  it('get message', async () => {
+  it('getMessage', async () => {
     expect(await contract.connect(user).getMessage()).to.equal('hello world!')
   })
 })
